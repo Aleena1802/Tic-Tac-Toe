@@ -66,6 +66,8 @@ const Game = (function () {
     gameBoard,
     player1,
     player2,
+    player1MarkPosition,
+    player2MarkPosition,
     checkWinner
   };
 })();
