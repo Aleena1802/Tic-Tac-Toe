@@ -11,14 +11,16 @@ const Game = (function () {
   const player2 = Player("zara", "O");
 
   function player1MarkPosition(position) {
-    if (gameBoard[position] != "O") {
+    if (gameBoard[position] == "") {
       this.gameBoard.splice(position, 1, "X"); //remove available position from board
+      return true; //ensure that choice is made on empty cell
     }
   }
 
   function player2MarkPosition(position) {
-    if (gameBoard[position] != "X") {
+    if (gameBoard[position] == "") {
       this.gameBoard.splice(position, 1, "O"); //remove available position from board
+      return true;
     }
   }
 
@@ -45,8 +47,6 @@ const Game = (function () {
           console.log("index: " + index + " counter: "+ player1Counter);
         } else if (this.gameBoard[index] == "O") {
           player2Counter++;
-          //console.log("player2counter: " + player2Counter);
-          //console.log("index: " + index);
         }
       }
       if(player1Counter==3){
@@ -81,12 +81,14 @@ let player1_turn = true;
 
 function displayChoice(e) {
   if (player1_turn) {
-    Game.player1MarkPosition(e.target.id);
+    if(Game.player1MarkPosition(e.target.id)){ //until choice is not made cannot change status of turns
     player1_turn=false;
+    }
   }
   else{
-    Game.player2MarkPosition(e.target.id);
+    if(Game.player2MarkPosition(e.target.id)){
     player1_turn=true;
+    }
   }
 
   const grid = Array.from(document.querySelectorAll(".div"));
