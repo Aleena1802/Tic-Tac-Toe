@@ -58,8 +58,10 @@ const Game = (function () {
     }
     if (player1Counter == 3) {
       //if player matches all three positions in one array they win
+      player1.incrementScore();
       return player1.name;
     } else if (player2Counter == 3) {
+        player2.incrementScore();
       return player2.name;
     } else{
       return "tie";
@@ -101,10 +103,10 @@ function displayChoice(e) {
   array_of_results.push(Game.checkWinner());
   const result=document.querySelector('.result');
   if(array_of_results.includes(Game.player1.name)){
-    result.innerText=Game.player1.name;
+    result.innerText=Game.player1.name + " " + Game.player1.getScore();
   }
   else if(array_of_results.includes(Game.player2.name)){
-    result.innerText=Game.player2.name;
+    result.innerText=Game.player2.name+" " + Game.player2.getScore();
   }
   else{
     result.innerText="tie";
