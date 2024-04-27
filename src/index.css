@@ -1,0 +1,13 @@
+.container{
+    width: 1000px;
+    height: 1000px;
+    background-color: aqua;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    margin-top: 200px;
+}
+.container>div{
+    border: 1px solid black;
+}
