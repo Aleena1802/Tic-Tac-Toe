@@ -1,22 +1,33 @@
+body{
+    background: linear-gradient(45deg, rgb(61, 169, 129) 0%, rgb(63, 68, 143) 100%);
+}
 .container{
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 100px 1fr 100px;
+    grid-template-rows: 100px 1fr 215px;
     grid-template-areas: "start start start" "player1 board player2" "result result result";
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: 100%;
 }
 
 .start{
     width: 500px;
     height: 100px;
-    background-color: aqua;
     margin: auto;
     grid-area: start;
     font-size: 100px;
+    text-align: center;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background-color:rgb(35, 83, 90);
+    color: wheat;
 }
 
 .player1{
     grid-area: player1;
-    background-color: blueviolet;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -46,7 +57,7 @@
 }
 
 .grid>div{
-    border: 1px solid black;
+    border: 5px solid black;
     font-size: 100px;
     display: flex;
     justify-content: center;
