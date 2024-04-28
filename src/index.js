@@ -116,49 +116,75 @@ function displayChoice(e) {
   
 }
 
-//gets all the divs in grid and attaches displayChoice function to display symbols for each player
-const buttons = Array.from(document.querySelectorAll(".div"));
-buttons.forEach((elem) => {
-  elem.addEventListener("click", displayChoice);
-});
+
 
 function displayWinner(array_of_results, result){
-    let player1=document.querySelector(".player1");
-    let player2=document.querySelector(".player2");
+    let player1Score=document.querySelector(".player1Score");
+    let player2Score=document.querySelector(".player2Score");
+const buttons = Array.from(document.querySelectorAll(".div"));
     if(array_of_results.includes(Game.player1.name)||array_of_results.includes(Game.player2.name)){
         buttons.forEach((elem)=>{
             elem.removeEventListener('click', displayChoice); //once winner found stop the game
-        })
+        });
+        restartGame();
     }
     if(array_of_results.includes(Game.player1.name)){
         Game.player1.incrementScore();
       result.innerText="Winner is "+Game.player1.name;
-      player1.innerHTML+=`<br><p>${Game.player1.getScore()}</p>`
+      player1Score.innerText=Game.player1.getScore();
     }
     else if(array_of_results.includes(Game.player2.name)){
         Game.player2.incrementScore();
       result.innerText="Winner is "+Game.player2.name;
-      player2.innerHTML+=`<br><p>${Game.player2.getScore()}</p>`
+      player2Score.innerText=Game.player2.getScore();
 
 
     }
  
+   
 }
 
 
 //attaching function to start game
 const start=document.querySelector(".start");
-start.addEventListener('click', getNameAtStart);
+start.addEventListener('click', (e)=>{
+    getNameAtStart(e);
+    //gets all the divs in grid and attaches displayChoice function to display symbols for each player
+const buttons = Array.from(document.querySelectorAll(".div"));
+buttons.forEach((elem) => {
+  elem.addEventListener("click", displayChoice);
+});
+});
 
-function getNameAtStart(){
-    let player1=document.querySelector(".player1");
-    let player2=document.querySelector(".player2");
+function getNameAtStart(e){
+    if(e.target.innerText!="Restart"){
+    let player1=document.querySelector(".player1Name");
+    let player2=document.querySelector(".player2Name");
 
     let player1Name=prompt("Enter player 1 name");
     let player2Name=prompt("Enter player 2 name");
 
     player1.innerHTML=`<p>${player1Name}</p>`
     player2.innerHTML=`<p>${player2Name}</p>`
-
-
+    }
+    else{
+        clearBoard();
+    }
+    
 }
+
+function restartGame(){
+  const start=document.querySelector(".start");
+  start.innerText="Restart";
+}
+
+function clearBoard(){
+    const grid = Array.from(document.querySelectorAll(".div"));
+    const board = Game.gameBoard;
+    for (let i = 0; i < grid.length; i++) {
+      grid[i].innerText = "";
+      board[i]="";
+    }
+}
+
+
