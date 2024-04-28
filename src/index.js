@@ -130,11 +130,11 @@ function displayWinner(array_of_results, result){
     }
     if(array_of_results.includes(Game.player1.name)){
         Game.player1.incrementScore();
-      result.innerText=Game.player1.name + " " + Game.player1.getScore();
+      result.innerText="Winner is "+Game.player1.name + " " + Game.player1.getScore();
     }
     else if(array_of_results.includes(Game.player2.name)){
         Game.player2.incrementScore();
-      result.innerText=Game.player2.name+" " + Game.player2.getScore();
+      result.innerText="Winner is "+Game.player2.name+" " + Game.player2.getScore();
     }
  
 }

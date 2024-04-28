@@ -1,13 +1,40 @@
 .container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 100px;
+    grid-template-areas: "player1 board player2" "result result result";
+}
+
+.player1{
+    grid-area: player1;
+}
+
+.player2{
+    grid-area: player2;
+}
+
+.grid{
     width: 1000px;
     height: 1000px;
-    background-color: lightblue;
     margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     margin-top: 200px;
+    grid-area: board;
 }
-.container>div{
+
+.grid>div{
     border: 1px solid black;
+    font-size: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.result{
+    grid-area: result;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
