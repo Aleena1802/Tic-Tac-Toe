@@ -12,14 +12,14 @@ const Game = (function () {
 
   function player1MarkPosition(position) {
     if (gameBoard[position] == "") {
-      this.gameBoard.splice(position, 1, "X"); //remove available position from board
+      this.gameBoard.splice(position, 1, player1.symbol); //remove available position from board
       return true; //ensure that choice is made on empty cell
     }
   }
 
   function player2MarkPosition(position) {
     if (gameBoard[position] == "") {
-      this.gameBoard.splice(position, 1, "O"); //remove available position from board
+      this.gameBoard.splice(position, 1, player2.symbol); //remove available position from board
       return true;
     }
   }
@@ -42,10 +42,10 @@ const Game = (function () {
       var player2Counter = 0;
       for (let j = 0; j < correctPositions[i].length; j++) {
         let index = correctPositions[i][j];
-        if (this.gameBoard[index] == "X") {
+        if (this.gameBoard[index] == player1.symbol) {
           player1Counter++; //if player matches the position their count increments
           console.log("index: " + index + " counter: " + player1Counter);
-        } else if (this.gameBoard[index] == "O") {
+        } else if (this.gameBoard[index] == player2.symbol) {
           player2Counter++;
         }
       }
@@ -169,8 +169,10 @@ function getNameAtStart(e) {
     let player1 = document.querySelector(".player1Name");
     let player2 = document.querySelector(".player2Name");
 
-    let player1Name = prompt("Enter player 1 name");
+    let player1Name = prompt("Enter player 1 name");  
+    Game.player1.symbol=prompt(`${player1Name}, enter your symbol`);
     let player2Name = prompt("Enter player 2 name");
+    Game.player2.symbol=prompt(`${player2Name}, enter your symbol`);
 
     player1.innerHTML = `<p>${player1Name}</p>`;
     player2.innerHTML = `<p>${player2Name}</p>`;
