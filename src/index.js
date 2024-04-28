@@ -123,6 +123,8 @@ buttons.forEach((elem) => {
 });
 
 function displayWinner(array_of_results, result){
+    let player1=document.querySelector(".player1");
+    let player2=document.querySelector(".player2");
     if(array_of_results.includes(Game.player1.name)||array_of_results.includes(Game.player2.name)){
         buttons.forEach((elem)=>{
             elem.removeEventListener('click', displayChoice); //once winner found stop the game
@@ -130,12 +132,33 @@ function displayWinner(array_of_results, result){
     }
     if(array_of_results.includes(Game.player1.name)){
         Game.player1.incrementScore();
-      result.innerText="Winner is "+Game.player1.name + " " + Game.player1.getScore();
+      result.innerText="Winner is "+Game.player1.name;
+      player1.innerHTML+=`<br><p>${Game.player1.getScore()}</p>`
     }
     else if(array_of_results.includes(Game.player2.name)){
         Game.player2.incrementScore();
-      result.innerText="Winner is "+Game.player2.name+" " + Game.player2.getScore();
+      result.innerText="Winner is "+Game.player2.name;
+      player2.innerHTML+=`<br><p>${Game.player2.getScore()}</p>`
+
+
     }
  
 }
 
+
+//attaching function to start game
+const start=document.querySelector(".start");
+start.addEventListener('click', getNameAtStart);
+
+function getNameAtStart(){
+    let player1=document.querySelector(".player1");
+    let player2=document.querySelector(".player2");
+
+    let player1Name=prompt("Enter player 1 name");
+    let player2Name=prompt("Enter player 2 name");
+
+    player1.innerHTML=`<p>${player1Name}</p>`
+    player2.innerHTML=`<p>${player2Name}</p>`
+
+
+}

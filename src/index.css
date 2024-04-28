@@ -1,16 +1,37 @@
 .container{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 100px;
-    grid-template-areas: "player1 board player2" "result result result";
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 100px 1fr 100px;
+    grid-template-areas: "start start start" "player1 board player2" "result result result";
+}
+
+.start{
+    width: 500px;
+    height: 100px;
+    background-color: aqua;
+    margin: auto;
+    grid-area: start;
+    font-size: 100px;
 }
 
 .player1{
     grid-area: player1;
+    background-color: blueviolet;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 80px;
 }
 
 .player2{
     grid-area: player2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 80px;
+
 }
 
 .grid{
@@ -20,7 +41,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    margin-top: 200px;
+    margin-top: 80px;
     grid-area: board;
 }
 
@@ -37,4 +58,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 80px;
+
 }
