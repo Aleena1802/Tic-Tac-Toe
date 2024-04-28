@@ -58,10 +58,8 @@ const Game = (function () {
     }
     if (player1Counter == 3) {
       //if player matches all three positions in one array they win
-      player1.incrementScore();
       return player1.name;
     } else if (player2Counter == 3) {
-        player2.incrementScore();
       return player2.name;
     } else{
       return "tie";
@@ -80,15 +78,18 @@ const Game = (function () {
 
 //allows players to take turns
 let player1_turn = true;
+let player2_turn=true;
 
 function displayChoice(e) {
   if (player1_turn) {
     if(Game.player1MarkPosition(e.target.id)){ //until choice is not made cannot change status of turns
     player1_turn=false;
+    player2_turn=true;
     }
   }
-  else{
+  if(player2_turn){
     if(Game.player2MarkPosition(e.target.id)){
+    player2_turn=false;
     player1_turn=true;
     }
   }
@@ -102,15 +103,15 @@ function displayChoice(e) {
   const array_of_results=[];
   array_of_results.push(Game.checkWinner());
   const result=document.querySelector('.result');
-  if(array_of_results.includes(Game.player1.name)){
-    result.innerText=Game.player1.name + " " + Game.player1.getScore();
-  }
-  else if(array_of_results.includes(Game.player2.name)){
-    result.innerText=Game.player2.name+" " + Game.player2.getScore();
-  }
-  else{
-    result.innerText="tie";
-  }
+
+  //check for winner after every turn
+  displayWinner(array_of_results, result);
+
+  //display tie if no winner
+  if(grid.some(elem => elem.innerText !== "")) {
+    result.innerText = "tie";
+}
+
   
 }
 
@@ -120,4 +121,20 @@ buttons.forEach((elem) => {
   elem.addEventListener("click", displayChoice);
 });
 
+function displayWinner(array_of_results, result){
+    if(array_of_results.includes(Game.player1.name)||array_of_results.includes(Game.player2.name)){
+        buttons.forEach((elem)=>{
+            elem.removeEventListener('click', displayChoice); //once winner found stop the game
+        })
+    }
+    if(array_of_results.includes(Game.player1.name)){
+        Game.player1.incrementScore();
+      result.innerText=Game.player1.name + " " + Game.player1.getScore();
+    }
+    else if(array_of_results.includes(Game.player2.name)){
+        Game.player2.incrementScore();
+      result.innerText=Game.player2.name+" " + Game.player2.getScore();
+    }
+ 
+}
 
