@@ -108,9 +108,10 @@ function displayChoice(e) {
   displayWinner(array_of_results, result);
 
   //display tie if no winner
-  if(grid.some(elem => elem.innerText !== "")) {
+  if (!grid.some(elem => elem.innerText === "")) {
     result.innerText = "tie";
 }
+
 
   
 }
